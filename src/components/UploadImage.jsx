@@ -11,6 +11,7 @@ const UploadImage = (props) => {
   const [responseText, setResponseText] = useState("");
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [clicked, setClicked] = useState(false);
 
   const onDrop = (acceptedFiles) => {
     setImage(URL.createObjectURL(acceptedFiles[0]));
@@ -94,6 +95,7 @@ const UploadImage = (props) => {
             fileInputEl.current.click();
             setResponseText("");
             setImage(null);
+            setClicked(true);
           }}
           style={{
             display: "block",
@@ -107,19 +109,24 @@ const UploadImage = (props) => {
           Drop your Image here
         </button>
       </div>
+      
       {loading ? (
         <div>{props.loading}</div>
       ) : (
-        <pre
-          style={{
-            whiteSpace: "pre-wrap",
-            wordWrap: "break-word",
-            fontSize: "15px",
-          }}
-        >
-          <ReactMarkdown>{responseText}</ReactMarkdown>
-        </pre>
+          <div style={{backgroundColor: "white" , padding: "15px" , marginTop: "10px"}}>
+          <pre
+            style={{
+              whiteSpace: "pre-wrap",
+              wordWrap: "break-word",
+              fontSize: "13px",
+              color: "black",
+            }}
+          >
+            <ReactMarkdown>{responseText}</ReactMarkdown>
+          </pre>
+          </div>
       )}
+      
     </>
   );
 };

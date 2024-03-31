@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Diet from "./components/Diet";
 import LifestyleAssistant from "./components/LifestyleAssistant";
+import Prescription from "./components/Prescription";
 
 const App = () => {
   return (
@@ -19,7 +20,7 @@ const App = () => {
           <Route path="/AI-assistant" element={<LifestyleAssistant></LifestyleAssistant>} />
         </Routes>
       </Router> */}
-      <Home></Home>
+      <Prescription></Prescription>
     </>
   );
 }

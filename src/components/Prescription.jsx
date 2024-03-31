@@ -1,22 +1,45 @@
-/*
-    1) Extract the medicines and number of times it needs to be taken from the prescription.
-    2) use the uploadfile component to upload the prescription
-    3) set the prompt template as
-    input_prompt="""You are a pharmacist where you need to see the medicines and number of times it needs to be taken in a day from the prescription.
-                Also, provide the details of every medicine with the number of times it needs to be taken in a day in below format.Also for each medicine, mention whether to take it before or after breakfast,lunch or dinner.
+import React from 'react'
+import UploadImage from './UploadImage'
 
-                1. Medicine 1 - 
-                timings:   
-                before/after breakfast/lunch/dinner
-                ---
-                ---
+const Prescription = () => {
 
-                2. Medicine 2 -
-                timings:    
-                before/after breakfast/lunch/dinner
-                ---
-                ---
+    const input_prompt=`
+    You are a pharmacist where you need to see the medicines and number of times it needs to be taken in a day from the prescription.
+    Also, provide the details of every medicine with the number of times it needs to be taken in a day in below format.Also for each medicine.
 
-                """
-    4) using the medicine timing and use that in the reminder component to set the reminder for the medicines
-*/
+
+    1. {Name of Medicine 1}
+    Timings:  
+    Amount to be taken:
+
+    2. {Name of Medicine 2}
+    Timings: 
+    Amount to be taken:
+    
+
+    ---
+    ---
+
+    Make a routine for the patient to take the medicines on time and make all medicines at correct timings are taken as mentioned in the prescription.
+    Specify whether to take it before/after breakfast/lunch/dinner. 
+    For example: if a medicine needs to be taken after breakfast, write that "Take it after breakfast" and make the font of the medicine name in bold.
+    Make sure not to provide incorrect dosage or timings for the medicines.
+
+    `
+
+  return (
+    <>
+        <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <h1>Medication Reminder</h1>
+      </div>
+        <UploadImage prompt={input_prompt} loading={"Extracting Medicine Timings..."}/>
+    </>
+  )
+}
+
+export default Prescription
