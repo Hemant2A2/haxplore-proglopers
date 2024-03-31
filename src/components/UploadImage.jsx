@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import ReactMarkdown from "react-markdown";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { useDropzone } from "react-dropzone";
 
@@ -9,6 +10,7 @@ const UploadImage = (props) => {
   const fileInputEl = useRef(null);
   const [responseText, setResponseText] = useState("");
   const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const onDrop = (acceptedFiles) => {
     setImage(URL.createObjectURL(acceptedFiles[0]));
@@ -28,7 +30,6 @@ const UploadImage = (props) => {
   }
 
   const run = async () => {
-    console.log(fileInputEl.current.files.length);
     if (fileInputEl.current.files.length > 0) {
       const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
 
@@ -42,17 +43,24 @@ const UploadImage = (props) => {
         [...fileInputEl.current.files].map(fileToGenerativePart)
       );
 
+      setLoading(true);
       const result = await model.generateContent([prompt, ...imageParts]);
       const response = await result.response;
       const text = response.text();
       setResponseText(text);
-      console.log(text);
+      setLoading(false);
     }
   };
 
   return (
     <>
-      <div {...getRootProps()}>
+      <div
+        {...getRootProps()}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <input
           {...getInputProps()}
           ref={fileInputEl}
@@ -60,25 +68,58 @@ const UploadImage = (props) => {
             run();
           }}
         />
-        <p>Drop your image here</p>
       </div>
-      {image && (
-        <img
-          style={{ width: "500px", height: "500px" }}
-          src={image}
-          alt="Uploaded"
-        />
-      )}
-      <button
-        onClick={() => {
-          fileInputEl.current.click();
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
         }}
       >
-        Upload Image
-      </button>
-      <div>
-        {responseText}
+        {image && (
+          <img
+            style={{ width: "500px", height: "500px" }}
+            src={image}
+            alt="Uploaded"
+          />
+        )}
       </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <button
+          onClick={() => {
+            fileInputEl.current.click();
+            setResponseText("");
+            setImage(null);
+          }}
+          style={{
+            display: "block",
+            marginTop: "20px",
+            borderRadius: "15px",
+            backgroundColor: "darkblue",
+            color: "white",
+            padding: "10px 20px",
+          }}
+        >
+          Drop your Image here
+        </button>
+      </div>
+      {loading ? (
+        <div>{props.loading}</div>
+      ) : (
+        <pre
+          style={{
+            whiteSpace: "pre-wrap",
+            wordWrap: "break-word",
+            fontSize: "15px",
+          }}
+        >
+          <ReactMarkdown>{responseText}</ReactMarkdown>
+        </pre>
+      )}
     </>
   );
 };
