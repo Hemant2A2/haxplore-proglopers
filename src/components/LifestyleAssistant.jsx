@@ -1,26 +1,30 @@
 import React, { useState } from "react";
 import ReactMarkdown from 'react-markdown';
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
+import { PromptTemplate } from "@langchain/core/prompts";
 
 const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
 const genAI = new GoogleGenerativeAI(API_KEY);
 
 const LifestyleAssistant = () => {
   const [responseText, setResponseText] = useState("");
-  const [query, setQuery] = useState("")
+  const [query, setQuery] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const run = async (e) => {
     e.preventDefault();
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
     const prompt = `
-    You are a lifestyle assistant. You are helping a user with their lifestyle. The user asks you a question about their lifestyle. The user asks you, "What is the best way to stay healthy?" You respond to the user's question.
+    Introduce yourself as a professional lifestyle advisor.
     `
-
+    setLoading(true);
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
     setResponseText(text);
+    setLoading(false);
     console.log(text);
   };
 

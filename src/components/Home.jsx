@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -25,24 +26,25 @@ const Home = () => {
               className="collapse navbar-collapse"
               id="navbarSupportedContent"
             >
-              <a className="navbar-brand" href="#">
+              <Link className="navbar-brand" to="/">
+              <img src="../../logo.png" alt="Logo" style={{ marginRight: '10px' , width: '40px', height: '40px' }} />
                 CareCompass
-              </a>
+              </Link>
 
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <a
+                  <Link
                     className="nav-link active"
                     aria-current="page"
-                    href="#intro"
+                    to="/"
                   >
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Doctor's page
-                  </a>
+                  <Link className="nav-link" to="/lifestyle">
+                    AI-Assistant
+                  </Link>
                 </li>
                 <li className="nav-item dropdown">
                   <a
@@ -64,10 +66,10 @@ const Home = () => {
               </ul>
             </div>
             <button className="btn btn-outline-success m-3" type="button">
-              LogIn
+              <Link to="/login">Login</Link>
             </button>
-            <button className="btn btn-success" type="button">
-              SignUp
+            <button className="btn btn-outline-success" type="button">
+              <Link to="/signup">Sign Up</Link>
             </button>
           </div>
         </nav>
@@ -83,7 +85,10 @@ const Home = () => {
           <div className="row align-items-center justify-content-center">
             <div className="col-md-7">
               <div className="container-xxl text-center rounded" style={{position: "relative", zIndex: 2, backgroundColor: "rgba(255, 255, 255, 0.398)"}}>
-                  <h1>CareCompass Hub</h1>
+                  <h1>
+                  <img src="../../logo.png" alt="Logo" style={{ marginRight: '10px' , width: '70px', height: '70px' }} />
+                  CareCompass Hub
+                  </h1>
                   <h2 className="display-5">Navigating health together</h2>
               </div>
             </div>
@@ -127,7 +132,9 @@ const Home = () => {
             <div className="col-md-5 my-1 mx-3">
               <div className="container-xxl text-center rounded" style={{position: "relative", zIndex: 2, backgroundColor: "rgba(255, 255, 255, 0.398)"}}>
                 <div id="fetaure3">
-                  <button className="btn btn-lg btn-outline-success my-2" type="button">Upload Prescription</button>
+                  <button className="btn btn-lg btn-outline-success my-2" type="button">
+                   <Link to="/prescription">Upload Prescription</Link>
+                  </button>
                   <button className="btn btn-lg btn-success my-2" type="button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-file-arrow-up" viewBox="0 0 16 16">
                       <path d="M8 11a.5.5 0 0 0 .5-.5V6.707l1.146 1.147a.5.5 0 0 0 .708-.708l-2-2a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L7.5 6.707V10.5a.5.5 0 0 0 .5.5"/>
@@ -144,7 +151,9 @@ const Home = () => {
             <div className="col-md-5 mt-1 mx-3 mb-1">
               <div className="container-xxl text-center rounded" style={{position: "relative", zIndex: 2, backgroundColor: "rgba(255, 255, 255, 0.398)"}}>
                 <div id="fetaure4">
-                  <button className="btn btn-lg btn-outline-success my-2" type="button">Calorie Tracker</button>
+                  <button className="btn btn-lg btn-outline-success my-2" type="button">
+                  <Link to="/diet">Upload Diet</Link>
+                  </button>
                   <button className="btn btn-lg btn-success my-2" type="button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-file-arrow-up" viewBox="0 0 16 16">
                       <path d="M8 11a.5.5 0 0 0 .5-.5V6.707l1.146 1.147a.5.5 0 0 0 .708-.708l-2-2a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L7.5 6.707V10.5a.5.5 0 0 0 .5.5"/>
@@ -207,11 +216,15 @@ const Home = () => {
       
      
       <div className="container-xxl my-5">
-          <div className="row justify-content-between align-items-top g-4">
-              <div className="col-md-5" style={{backgroundColor: "rgba(0, 0, 0, 0.382)"}}>
-                  <div className="fs-6"><em>Our mission</em></div><hr style={{marginTop:"0"}}/>
-                  <p style={{color: "rgba(113, 251, 205, 0.708)"}}><small><em>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias odio odit labore neque voluptatum harum voluptatibus tempore, dolore voluptatem vel ipsa quae eaque cupiditate fugit dolores! Iusto reprehenderit magnam delectus molestias et similique, in ex placeat sunt, nisi sint ut harum commodi minus accusantium voluptas cumque deleniti beatae maxime. Cupiditate?
+          <div className="row justify-content-center align-items-top g-4">
+              <div className="col-md-5" style={{backgroundColor: "rgba(0, 0, 0, 0.382)" , width: '90%'}}>
+                  <div className="fs-6"><em style={{fontSize: "40px"}}>Our mission</em></div><hr style={{marginTop:"0" }}/>
+                  <p style={{color: "rgba(113, 251, 205, 0.708)" ,fontSize: "25px"}}><small><em>
+                  Remote patient monitoring that enables individuals to track their health
+                  metrics at home. We provide a platform for patients to connect to doctors virtually.
+                  Get medication reminders and routine from your prescription so that you don't miss any dose.
+                  Get your Calorie intake from your diet in just one click.
+                  Get advice from our AI assistant for your lifestyle.
                   </em></small></p>
               </div>
               

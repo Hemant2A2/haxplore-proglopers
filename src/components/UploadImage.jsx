@@ -113,6 +113,7 @@ const UploadImage = (props) => {
       {loading ? (
         <div>{props.loading}</div>
       ) : (
+        clicked ? (
           <div style={{backgroundColor: "white" , padding: "15px" , marginTop: "10px"}}>
           <pre
             style={{
@@ -122,10 +123,13 @@ const UploadImage = (props) => {
               color: "black",
             }}
           >
-            <ReactMarkdown>{responseText}</ReactMarkdown>
+            <ReactMarkdown>
+            {responseText}
+            </ReactMarkdown>
           </pre>
           </div>
-      )}
+      ) : (
+        <div></div>))}
       
     </>
   );
