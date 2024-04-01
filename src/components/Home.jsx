@@ -80,7 +80,7 @@ const Home = () => {
 
         <div className="container-xxl align-center py-1 my-3">
           <div className="container-xxl justify-content-center" id="image" >
-            <img src="../../img1.jpeg" alt="img" className="img-fluid mx-auto d-block" style={{position: "absolute", zIndex: 1, borderRadius: "50px" , height: "95%", width: "80%"}}/>
+            <img src="../../img1.jpeg" alt="img" className="img-fluid mx-auto d-block" style={{position: "absolute", zIndex: 1, borderRadius: "50px" , height: "100%", width: "80%"}}/>
           </div>
           <div className="row align-items-center justify-content-center">
             <div className="col-md-7">
