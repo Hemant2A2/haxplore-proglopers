@@ -1,23 +1,22 @@
 import React, { useState } from "react";
 import ReactMarkdown from 'react-markdown';
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
-import { PromptTemplate } from "@langchain/core/prompts";
 
 const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
 const genAI = new GoogleGenerativeAI(API_KEY);
 
 const LifestyleAssistant = () => {
   const [responseText, setResponseText] = useState("");
-  const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
+  const [clicked, setClicked] = useState(false);
 
   const run = async (e) => {
     e.preventDefault();
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
     const prompt = `
-    Introduce yourself as a professional lifestyle advisor.
+     You are a Professional Lifestyle Advisor. Indroduce yourself as a virtual assistant and reply by giving advice to people about ways to stay healthy
+     and live a long life. Mention the importance of a balanced diet, regular exercise, and a good night's sleep.Also provide tips on how to reduce stress and anxiety.
     `
     setLoading(true);
     const result = await model.generateContent(prompt);
@@ -25,28 +24,21 @@ const LifestyleAssistant = () => {
     const text = response.text();
     setResponseText(text);
     setLoading(false);
-    console.log(text);
   };
 
   return (
     <>
+        <div
+        style={{
+            display: 'flex',
+            justifyContent: 'center',
+            
+        }}
+        >
         <h1>Lifestyle Assistant</h1>
+        </div>
         <div>
         <form onSubmit={run}>
-            {/* <input type='text' 
-            placeholder="Enter your query"
-            value={query}
-            onChange={(e)=>{
-                setQuery(e.target.value)
-            }}
-            style={{
-                borderRadius: '15px',
-                width: '800px',
-                height: '40px',
-                padding: '5px 10px',
-                fontSize: '18px'
-            }}
-             /> */}
             <div
             style={{
                 display: 'flex',
@@ -54,6 +46,11 @@ const LifestyleAssistant = () => {
             }}
             >
             <button
+
+            onClick={()=>{
+                setClicked(true);
+            }}
+
             style={{
                 display: 'block',
                 marginTop: '20px',
@@ -63,19 +60,32 @@ const LifestyleAssistant = () => {
                 padding: '10px 20px',
             }}
             >
-                Submit
+                Get Advice
             </button>
             </div>
         </form>
-        <pre
-        style={{
-            whiteSpace: 'pre-wrap',
-            wordWrap: 'break-word',
-            fontSize: '15px',
-        }}
-        >
-           <ReactMarkdown>{responseText}</ReactMarkdown>
-        </pre>
+
+
+        {loading ? (
+        <div style={{fontSize: "20px" , fontWeight: "bold"}}>{"Thinking..."}</div>
+      ) : (
+        clicked ? (
+          <div style={{backgroundColor: "white" , padding: "15px" , marginTop: "10px"}}>
+          <pre
+            style={{
+              whiteSpace: "pre-wrap",
+              wordWrap: "break-word",
+              fontSize: "13px",
+              color: "black",
+            }}
+          >
+            <ReactMarkdown>
+            {responseText}
+            </ReactMarkdown>
+          </pre>
+          </div>
+      ) : (
+        <div></div>))}
         </div>
     </>
   )
