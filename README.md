@@ -10,3 +10,7 @@ visit our website at : https://carecompasshub.vercel.app/
 * Upload Image of your prescription to prepare a note of the timinigs of the medicines and prepare a routine for you to make your you take your medicines on time.
 * Get advice from our AI-assistant to improve your lifestyle
 
+## Team - Prøglopers
+* Hemant Ayuj
+* Lakshya Singhal
+* Swapnil Chakraborty
