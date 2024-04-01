@@ -15,7 +15,7 @@ const LifestyleAssistant = () => {
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
     const prompt = `
-     You are a Professional Lifestyle Advisor. Indroduce yourself as a virtual assistant and reply by giving advice to people about ways to stay healthy
+     You are a Professional Lifestyle Advisor.Your name is CompassAI. Indroduce yourself as a virtual assistant and reply by giving advice to people about ways to stay healthy
      and live a long life. Mention the importance of a balanced diet, regular exercise, and a good night's sleep.Also provide tips on how to reduce stress and anxiety.
     `
     setLoading(true);
